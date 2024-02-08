@@ -4,31 +4,47 @@ string[] inputStrings = new[]{"lorem", "ipsum", "dolor", "sit", "amet", "consect
     "tincidunt", "ut", "laoreet", "dolore", "magna", "aliquam", "erat"};
 
 
-// Считаем количество коротких строк
-int outputArrayLength = 0;
-foreach (string inputString in inputStrings)
+// Функция для красивого вывода массива в консоль
+// string[] strings - массив строк, который нужно вывести
+void OutputStringsToConsole(string[] strings)
 {
-    if (inputString.Length <= 3)
+    string outputString = "[";
+    foreach (string str in strings)
     {
-        outputArrayLength++;
+        outputString += string.Format("\"{0}\", ", str);
     }
+    outputString = outputString.Remove(outputString.Length - 2, 2);
+    outputString += "]";
+    Console.WriteLine(outputString);
 }
-// Создаем массив для коротких строк
-string[] shortStrings = new string[outputArrayLength];
 
-// Добавляем короткие строки в массив коротких строк
-int counter = 0;
-foreach (string inputString in inputStrings)
+
+void main()
 {
-    if (inputString.Length <= 3)
+    // Считаем количество коротких строк
+    int outputArrayLength = 0;
+    foreach (string inputString in inputStrings)
     {
-        shortStrings[counter++] = inputString;
+        if (inputString.Length <= 3)
+        {
+            outputArrayLength++;
+        }
     }
+    // Создаем массив для коротких строк
+    string[] shortStrings = new string[outputArrayLength];
+
+    // Добавляем короткие строки в массив коротких строк
+    int counter = 0;
+    foreach (string inputString in inputStrings)
+    {
+        if (inputString.Length <= 3)
+        {
+            shortStrings[counter++] = inputString;
+        }
+    }
+
+    OutputStringsToConsole(shortStrings);
 }
 
-// Выводим массив коротких строк в консоль
-foreach (string shortString in shortStrings)
-{
-    Console.WriteLine(shortString);
-}
 
+main();
